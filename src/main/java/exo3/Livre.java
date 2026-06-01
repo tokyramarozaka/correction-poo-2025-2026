@@ -12,15 +12,25 @@ public class Livre {
     private int nbPages;
     private LocalDate dateDeParution;
     private String resume;
+    private Auteur auteur;
     private List<Genre> genres;
 
-    public Livre(int id, String titre, int nbPages, LocalDate dateDeParution, List<Genre> genres, String resume) {
+    public Livre(int id, String titre, int nbPages, LocalDate dateDeParution, List<Genre> genres, String resume, Auteur auteur) {
         this.id = id;
         this.titre = titre;
         this.nbPages = nbPages;
         this.dateDeParution = dateDeParution;
         this.genres = genres;
         this.resume = resume;
+        this.auteur = auteur;
+    }
+
+    public Auteur getAuteur() {
+        return auteur;
+    }
+
+    public void setAuteur(Auteur auteur) {
+        this.auteur = auteur;
     }
 
     public int getId() {
