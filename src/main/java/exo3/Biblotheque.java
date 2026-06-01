@@ -82,5 +82,11 @@ public class Biblotheque {
                 .collect(Collectors.toList());
     }
 
-
+    public List<Livre> chercherParMotCle(String motCle) {
+        return this.livres
+                .stream()
+                .filter(livre -> livre.getResume().toLowerCase()
+                        .contains(motCle.toLowerCase()))
+                .collect(Collectors.toList());
+    }
 }

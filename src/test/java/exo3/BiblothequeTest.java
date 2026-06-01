@@ -22,7 +22,7 @@ class BiblothequeTest {
         simba = new Livre(1, "Simba: Le roi lion", 200, LocalDate.of(1999, 10, 07),
                 List.of(Livre.Genre.FANTASTIQUE), "Les aventures de Simba et Nala", auteurDisney);
         fourthWing = new Livre(2, "Fourth wing", 400, LocalDate.of(2016, 9, 9),
-                List.of(Livre.Genre.ROMANCE, Livre.Genre.FANTASTIQUE), "Europe", auteurDisney);
+                List.of(Livre.Genre.ROMANCE, Livre.Genre.FANTASTIQUE), "Histoire de dragons", auteurDisney);
     }
 
     @Test
@@ -57,5 +57,19 @@ class BiblothequeTest {
 
         assertEquals(fourthWing, listeTriee.get(0));
         assertEquals(simba, listeTriee.get(1));
+    }
+
+    @Test
+    void test_rechercher_par_mot_cle_ok() {
+        this.biblotheque.ajouterLivre(simba);
+        this.biblotheque.ajouterLivre(fourthWing);
+
+        var resultat = biblotheque.chercherParMotCle("simba");
+        var resultatFacile = biblotheque.chercherParMotCle("a");
+
+        assertTrue(resultat.contains(simba));
+        assertFalse(resultat.contains(fourthWing));
+        assertTrue(resultatFacile.contains(simba));
+        assertTrue(resultatFacile.contains(fourthWing));
     }
 }
