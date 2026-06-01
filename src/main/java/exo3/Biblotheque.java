@@ -60,26 +60,20 @@ public class Biblotheque {
         this.livres = livres;
     }
 
-    public Livre ajouterLivre(Livre livre) {
+    public void ajouterLivre(Livre livre) {
         if (livre == null) {
             throw new IllegalArgumentException("Le livre ne peut pas être null");
         }
         this.livres.add(livre);
-        return livre;
     }
 
-    public Livre retirerLivreParId(int id) {
+    public void retirerLivreParId(int id) {
         var existeDansLaBibliotheque = this.livres.stream()
                 .anyMatch(livre -> livre.getId() == id);
         if (!existeDansLaBibliotheque) {
             throw new IllegalArgumentException("L'id que vous avez donné n'existe pas dans la bibliotheque " + this.nom);
         }
-        var livreARetirer = this.livres.stream()
-                .filter(livre -> livre.getId() == id)
-                .findFirst()// Optional: valeur qui peut être un livre / null
-                .get();
         this.livres.removeIf(livre -> livre.getId() == id);
-        return livreARetirer;
     }
 
     public List<Livre> livresTrieParTitreCroissant(){
@@ -87,4 +81,6 @@ public class Biblotheque {
                 .sorted(Comparator.comparing(Livre::getTitre))
                 .collect(Collectors.toList());
     }
+
+
 }
