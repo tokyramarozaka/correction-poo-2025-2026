@@ -36,7 +36,8 @@ class BiblothequeTest {
     @Test
     void test_ajouter_livre_nul_ko(){
         var erreur = assertThrows(IllegalArgumentException.class, () -> biblotheque.ajouterLivre(null));
-        assertEquals("Le livre ne peut pas être null",  erreur.getMessage());
+        assertEquals("Le livre ne peut pas être null",
+                erreur.getMessage());
     }
 
     @Test
@@ -71,5 +72,16 @@ class BiblothequeTest {
         assertFalse(resultat.contains(fourthWing));
         assertTrue(resultatFacile.contains(simba));
         assertTrue(resultatFacile.contains(fourthWing));
+    }
+
+    @Test
+    void test_rechercher_par_titre_ok() {
+        this.biblotheque.ajouterLivre(simba);
+        this.biblotheque.ajouterLivre(fourthWing);
+
+        var resultat = biblotheque.chercherParTitre("wing");
+
+        assertTrue(resultat.contains(fourthWing));
+        assertFalse(resultat.contains(simba));
     }
 }

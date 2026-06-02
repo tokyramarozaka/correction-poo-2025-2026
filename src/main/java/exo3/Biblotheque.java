@@ -79,7 +79,14 @@ public class Biblotheque {
     public List<Livre> livresTrieParTitreCroissant(){
         return this.livres.stream()
                 .sorted(Comparator.comparing(Livre::getTitre))
-                .collect(Collectors.toList());
+                .toList();
+    }
+
+    public List<Livre> chercherParTitre(String titre) {
+        return this.livres.stream()
+                .filter(livre -> livre.getTitre().toLowerCase()
+                        .contains(titre.toLowerCase()))
+                .toList();
     }
 
     public List<Livre> chercherParMotCle(String motCle) {
@@ -87,6 +94,6 @@ public class Biblotheque {
                 .stream()
                 .filter(livre -> livre.getResume().toLowerCase()
                         .contains(motCle.toLowerCase()))
-                .collect(Collectors.toList());
+                .toList();
     }
 }
